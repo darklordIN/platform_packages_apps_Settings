@@ -129,16 +129,6 @@
     <string name="recent_clear_all_button_location_bottom_left">Bottom left</string>
     <string name="recent_clear_all_button_location_bottom_right">Bottom right</string>
     
-    <!-- Color Picker -->
-    <string name="dialog_color_picker">Color Picker</string>
-    <string name="press_color_to_apply">Press on color below to apply</string>
-    <string name="arrow_right">→</string>
-    <string name="arrow_down">↓</string>
-    <string name="hex">Hex:</string>
-    <string name="hex_hint">#ff000000</string>
-    <string name="set">Set</string>
-    <string name="color_default">Default</string>
-
     <!-- Recents Ram Bar -->
     <string name="ram_bar">Recents RAM bar</string>
     <string name="ram_bar_note_title">Note</string>
@@ -242,5 +232,24 @@
     <string name="pixel_site_title">PixelROM Website</string>
     <string name="pixel_site_summary">Visit the PixelROM Website for latest news about the ROM.</string>
 
->>>>>>> 68fb43a... Settings: Add About PixelROM
+    <!-- Color Picker -->
+    <string name="dialog_color_picker">Color Picker</string>
+    <string name="press_color_to_apply">Press on color below to apply</string>
+    <string name="arrow_right">→</string>
+    <string name="arrow_down">↓</string>
+    <string name="hex">Hex:</string>
+    <string name="hex_hint">#ff000000</string>
+    <string name="set">Set</string>
+    <string name="color_default">Default</string>
+    
+    <!-- BatteryBar -->
+    <string name="battery_bar_title">Battery Bar</string>
+    <string name="battery_bar">Battery bar location</string>
+    <string name="battery_bar_color">Battery bar color</string>
+    <string name="battery_bar_cat">Battery bar style</string>
+    <string name="battery_bar_style_title">Battery bar alignment</string>
+    <string name="battery_bar_thickness_title">Battery bar thickness</string>
+    <string name="battery_bar_animate_title">Charging animation</string>
+    <string name="battery_bar_animate_summary">The charging animation may result in a poor user experience. Enable at your own discretion.</string>
+
 </resources>

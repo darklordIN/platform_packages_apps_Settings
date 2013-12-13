@@ -1760,6 +1760,8 @@
         <activity android:name=".cyanogenmod.LockscreenTargets" />
 
         <activity android:name=".cyanogenmod.LockscreenButtons" />
+        
+        <activity android:name=".pixel.BatteryBarStyle" />
 
         <activity android:name=".cyanogenmod.PerformanceSettings" />
 
