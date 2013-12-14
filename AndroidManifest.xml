@@ -1743,6 +1743,10 @@
 
         <activity android:name=".profiles.NFCProfileSelect" />
 
+        <activity android:name=".slim.themes.ThemeSettings" />
+
+        <activity android:name=".util.ShowBuildProp" />
+
         <activity android:name=".profiles.NFCProfile"
                 android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
