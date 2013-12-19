@@ -26,6 +26,14 @@
         android:entries="@array/notification_drawer_collapse_on_dismiss_entries"
         android:entryValues="@array/notification_drawer_collapse_on_dismiss_values" />
 
+    <Preference
+            android:fragment="com.android.settings.vanir.NotificationDrawerStyle"
+            android:key="notification_style"
+            android:title="@string/notification_title"
+            android:summary="@string/notification_summary" />
+
+    </PreferenceCategory>
+ 
     <PreferenceCategory
         android:title="@string/category_quick_access" >
 
@@ -50,6 +58,7 @@
             android:fragment="com.android.settings.quicksettings.QuickSettingsTiles" >
             <extra android:name="config_ribbon" android:value="true" />
         </PreferenceScreen>
+
     </PreferenceCategory>
 
 </PreferenceScreen>
