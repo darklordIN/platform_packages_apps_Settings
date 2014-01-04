@@ -74,7 +74,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             // Do nothing
         }
 
-        mStatusBarBattery = (ListPreference) findPreference(STATUS_BAR_BATTERY);
         mStatusBarNetworkStats = (CheckBoxPreference) prefSet.findPreference(STATUS_BAR_NETWORK_STATS);
         mStatusBarNetStatsUpdate = (ListPreference) prefSet.findPreference(STATUS_BAR_NETWORK_STATS_UPDATE);
 
