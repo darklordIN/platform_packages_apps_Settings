@@ -294,7 +294,7 @@
     <!-- About PixelROM -->
     <header
         android:id="@+id/about_pixel"
-        android:fragment="com.android.settings.pixel.About"
+        android:fragment="com.android.settings.pixelrom.About"
         android:icon="@drawable/ic_cm_stats_notif"
         android:title="@string/about_pixel_settings_title" />
 

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.pixel;
+package com.android.settings.pixelrom;
 
 import android.content.Intent;
 import android.net.Uri;

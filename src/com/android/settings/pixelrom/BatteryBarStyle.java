@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.gummy;
+package com.android.settings.pixelrom;
 
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;

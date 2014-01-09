@@ -206,7 +206,7 @@
         </activity>
 
         <!-- About PixelROM -->
-        <activity android:name=".pixel.About" />
+        <activity android:name=".pixelrom.About" />
 
 	<!--  Configurable BuildProp  -->
 	<activity android:name=".util.ShowBuildProp" />
@@ -1775,7 +1775,7 @@
 
         <activity android:name=".cyanogenmod.LockscreenButtons" />
         
-        <activity android:name=".gummy.BatteryBarStyle" />
+        <activity android:name=".pixelrom.BatteryBarStyle" />
 
         <activity android:name=".cyanogenmod.PerformanceSettings" />
 
@@ -1828,7 +1828,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
-                android:value="com.android.settings.crdroid.RamBar" />
+                android:value="com.android.settings.pixelrom.RamBar" />
         </activity>
 
         <!-- Pseudo-activity used to provide an intent-filter entry point to encryption settings -->

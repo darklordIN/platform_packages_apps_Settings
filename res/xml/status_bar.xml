@@ -19,7 +19,7 @@
     android:title="@string/status_bar_title">
 
    <PreferenceScreen
-            android:fragment="com.android.settings.gummy.BatteryBarStyle"
+            android:fragment="com.android.settings.pixelrom.BatteryBarStyle"
             android:key="battery_bar"
             android:title="@string/battery_bar_title" />
 
@@ -110,6 +110,22 @@
             android:entryValues="@array/values_status_bar_network_stats_update"
             android:dependency="status_bar_show_network_stats" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/notification_carrier_label_title">
+     
+       <com.android.settings.pixelrom.CustomCarrier
+         android:key="notification_custom_carrier_label"
+         android:title="@string/notification_custom_carrier_label_title"
+         android:dialogTitle="@string/notification_custom_carrier_label_title"
+         android:positiveButtonText="@string/wifi_save"
+         android:negativeButtonText="@string/wifi_cancel"
+         android:selectAllOnFocus="true"
+         android:imeOptions="actionDone"
+         android:inputType="textNoSuggestions"
+         android:persistent="false" />
+    
     </PreferenceCategory>
 
 </PreferenceScreen>
