@@ -957,11 +957,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- Menu label for reset the battery stats -->
     <string name="menu_stats_reset">Reset</string>
 
-    <!-- CM Legal -->
-    <string name="cmlicense_title">CyanogenMod Legal</string>
-    <string name="settings_cmlicense_activity_title">CyanogenMod Legal</string>
-    <string name="settings_cmlicense_activity_unreachable">You don\'t have a data connection. To view this information now, go to %s from any computer connected to the Internet.</string>
-
     <!-- Stylus Icon -->
     <string name="stylus_icon_enabled_title">Show icon when using stylus</string>
     <string name="stylus_icon_enabled_summary">Show the pointer icon when hovering or drawing with the stylus</string>
@@ -994,4 +989,5 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- Whether to display IME switcher notifcation -->
     <string name="ime_switcher_notify">Selector notification</string>
     <string name="ime_switcher_notify_summary">Display input method selector notification</string>
+
 </resources>
