@@ -2,9 +2,9 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- About phone screen, crDroid version -->
-    <string name="crdroid_version_title">crDroid Simple version</string>
-    <string name="crdroid_version_default">Build 7</string>
+    <!-- PixelROM Version -->
+    <string name="pixel_version_title">PixelROM Version</string>
+    <string name="pixel_version_default">Unknown</string>
 
     <!-- General strings -->
     <string name="reset">Reset</string>
@@ -24,7 +24,6 @@
     <string name="halo_notification_msgbox_summary">Show message box for incoming notifications</string>
     <string name="halo_unlock_ping_title">Ping on unlock</string>
     <string name="halo_unlock_ping_summary">Halo will ping when device is unlocked if new notifications were received</string>
-
     <string name="halo_size_title">Halo size</string>
     <string name="halo_size_summary">Defines how big Halo is going to be</string>
     <string name="halo_size_miniscule">Miniscule</string>
@@ -33,7 +32,6 @@
     <string name="halo_size_large">Large</string>
     <string name="halo_size_gigantic">Gigantic</string>
     <string name="halo_size_monster">Monster</string>
-
     <string name="halo_notification_count_title">Notification count</string>
     <string name="halo_notification_count_summary">Display notification counts on Halo</string>
     <string name="halo_notification_count_none">None</string>
