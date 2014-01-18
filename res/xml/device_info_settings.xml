@@ -138,15 +138,6 @@
                 android:title="@string/mem_info"
                 android:summary="@string/device_info_default"/>
 
-
-    <!-- About PixelROM -->
-    <header
-        android:id="@+id/about_pixel"
-        android:fragment="com.android.settings.pixel.About"
-        android:icon="@drawable/ic_cm_stats_notif"
-        android:title="@string/about_pixel_settings_title" />
-
-
         <!-- PixelROM Version -->
         <Preference android:key="pixel_version"
                 style="?android:preferenceInformationStyle"
