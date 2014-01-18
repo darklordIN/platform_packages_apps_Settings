@@ -297,6 +297,13 @@
         android:fragment="com.android.settings.cyanogenmod.PerformanceSettings"
         android:icon="@drawable/ic_settings_performance"
         android:title="@string/performance_settings_title" />
+        
+    <!-- About PixelROM -->
+    <header
+        android:id="@+id/about_pixel"
+        android:fragment="com.android.settings.pixel.About"
+        android:icon="@drawable/ic_cm_stats_notif"
+        android:title="@string/about_pixel_settings_title" />
 
     <!-- About Device -->
     <header
