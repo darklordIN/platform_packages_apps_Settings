@@ -9,6 +9,14 @@
     <!-- General strings -->
     <string name="recents_panel_settings_title" >Recents panel settings</string>
     <string name="reset">Reset</string>
+    <string name="enabled">Enabled</string>
+    <string name="attention">Attention</string>
+    <string name="disabled">Disabled</string>
+    <string name="default_string">Default</string>
+    <string name="additional_options_title">Additional options</string>
+    <string name="reset_message">Reset all entries to default?</string>
+    <string name="style_title">Style</string>
+    <string name="save">Save</string>
 
     <!-- Halo -->
     <string name="halo_settings_title">Halo</string>
@@ -194,4 +202,30 @@
     <string name="listview_anticipate_overshoot_interpolator">Anticipate and overshoot</string>
     <string name="listview_bounce_interpolator">Bounce</string>
 
+    <!-- About PixelROM -->
+    <string name="about_pixel_settings_title">About PixelROM</string>
+    <string name="about_pixel">About PixelROM</string>
+    <string name="about_pixel_summary">@null</string>
+    <string name="contributors_title">Contributor(s)</string>
+    <string name="devs">Developer(s)</string>
+
+    <!-- Dev Creds -->
+    <!-- nolinuxnoparty -->
+    <string name="name_nolinuxnoparty">Arnav Gosain</string>
+    <string name="github_nolinuxnoparty">https://github.com/nolinuxnoparty</string>
+    <string name="email_nolinuxnoparty">nolinuxnoparty@gmail.com</string>
+    <string name="twitter_nolinuxnoparty">nolinuxnoparty</string>
+
+    <!-- Contributor Creds -->
+    <!-- CyanogenMod -->
+    <string name="name_cm">CyanogenMod</string>
+    <string name="twitter_cm">CyanogenMod</string>
+    <string name="github_cm">https://github.com/CyanogenMod</string>
+    <string name="donate_cm">http://forum.cyanogenmod.com/donate</string>
+
+    <!-- PixelROM Website Creds -->
+    <string name="pixel_site_title">PixelROM Website</string>
+    <string name="pixel_site_summary">Visit the PixelROM Website for latest news about the ROM.</string>
+
+>>>>>>> 68fb43a... Settings: Add About PixelROM
 </resources>
