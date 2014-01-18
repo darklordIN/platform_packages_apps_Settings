@@ -18,7 +18,7 @@ xmlns:rb="http://schemas.android.com/apk/res/com.android.settings">
 
 <PreferenceCategory
             android:key="devs"
-            android:title="@string/devs">
+            android:title="@string/devs" />
 
         <com.android.settings.widgets.DeveloperPreference
             android:title="nolinuxnoparty"
