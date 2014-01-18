@@ -196,6 +196,9 @@
             </intent-filter>
         </activity>
 
+        <!-- About PixelROM -->
+        <activity android:name=".pixel.About" />
+
         <!-- Wireless Controls -->
 
         <activity android:name="Settings$WirelessSettingsActivity"

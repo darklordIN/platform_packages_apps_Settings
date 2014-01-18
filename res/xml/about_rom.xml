@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+xmlns:android="http://schemas.android.com/apk/res/android"
+        android:title="@string/about_pixel_settings_title"
+xmlns:rb="http://schemas.android.com/apk/res/com.android.settings">
+
+<PreferenceScreen android:key="pixel_logo"
+                 android:layout="@layout/logo" />
+
+<PreferenceCategory
+  android:key="links"
+  android:title="@string/about_pixel">
+
+<Preference
+      android:key="pixel_site"
+      android:title="@string/pixel_site_title"
+      android:summary="@string/pixel_site_summary" />
+
+<PreferenceCategory
+            android:key="devs"
+            android:title="@string/devs">
+
+        <com.android.settings.widgets.DeveloperPreference
+            android:title="nolinuxnoparty"
+            rb:nameDev="@string/name_nolinuxnoparty"
+            rb:twitterHandle="@string/twitter_nolinuxnoparty"
+            rb:githubLink="@string/github_nolinuxnoparty"
+            rb:googleLink="@string/gplus_nolinuxnoparty"
+            rb:emailDev="@string/email_nolinuxnoparty"/>
+
+</PreferenceCategory>
+
+<PreferenceCategory
+android:key="contributors"
+android:title="@string/contributors_title">
+
+        <com.android.settings.widgets.DeveloperPreference
+            android:title="CyanogenMod"
+            rb:nameDev="@string/name_cm"
+            rb:twitterHandle="@string/twitter_cm"
+            rb:donateLink="@string/donate_cm"
+            rb:githubLink="@string/github_cm" />
+
+</PreferenceCategory>
+
+</PreferenceScreen>
