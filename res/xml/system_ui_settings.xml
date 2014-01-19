@@ -93,10 +93,9 @@
     <!-- HALO -->
     <PreferenceCategory
         android:key="halo"
-        android:title="@string/halo_settings_title" >
+        android:title="@string/halo_settings_title">
         
     <PreferenceScreen
-        android:key="halo_settings"
         android:id="@+id/halo_settings"
         android:fragment="com.android.settings.pixelrom.Halo"
         android:icon="@drawable/ic_settings_halo" 
@@ -104,9 +103,28 @@
         
     </PreferenceCategory>
     
+    <!-- SlimSizer -->
+    <PreferenceCategory
+        android:key="system_app_remover"
+        android:title="@string/system_app_remover"">
+
     <PreferenceScreen
         android:id="@+id/system_app_remover"
-        android:fragment="com.android.settings.vanir.SystemappRemover"
+        android:fragment="com.android.settings.pixelrom.SystemappRemover"
         android:title="@string/system_app_remover" />
+    
+    </PreferenceCategory>
+
+    <!-- Breathing Notifications -->
+    <PreferenceCategory
+        android:key="breathing_notifications"
+        android:title="@string/breathing_notifications_title">
+
+    <PreferenceScreen
+        android:id="@+id/breathing_notifications"
+        android:fragment="com.android.settings.pixelrom.BreathingNotifications"
+        android:title="@string/breathing_notifications_title" />
+     
+    </PreferenceCategory>
 
 </PreferenceScreen>
