@@ -17,7 +17,6 @@
 package com.android.settings;
 
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
-import static android.provider.Settings.System.SCREEN_ANIMATION_STYLE;
 
 import android.app.ActivityManagerNative;
 import android.app.Dialog;
@@ -74,14 +73,12 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_POWER_CRT_MODE = "system_power_crt_mode";
     private static final String KEY_LISTVIEW_ANIMATION = "listview_animation";
     private static final String KEY_LISTVIEW_INTERPOLATOR = "listview_interpolator";
-    private static final String KEY_SCREEN_ANIMATION_STYLE = "screen_animation_style";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
     private CheckBoxPreference mAccelerometer;
     private FontDialogPreference mFontSizePref;
     private CheckBoxPreference mWakeWhenPluggedOrUnplugged;
-    private ListPreference mScreenAnimationStylePreference;
 
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
@@ -155,30 +152,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         mWakeWhenPluggedOrUnplugged =
                 (CheckBoxPreference) findPreference(KEY_WAKE_WHEN_PLUGGED_OR_UNPLUGGED);
-
-        boolean allowsScreenOffAnimation = res.getBoolean(
-                com.android.internal.R.bool.config_screenOffAnimation);
-        boolean requiresFadeAnimation = res.getBoolean(
-                com.android.internal.R.bool.config_animateScreenLights);
-        mScreenAnimationStylePreference =
-                (ListPreference) findPreference(KEY_SCREEN_ANIMATION_STYLE);
-
-        if (allowsScreenOffAnimation) {
-            if (!requiresFadeAnimation) {
-                final int currentAnimation =
-                        Settings.System.getInt(resolver, SCREEN_ANIMATION_STYLE, 0);
-                mScreenAnimationStylePreference.setValue(String.valueOf(currentAnimation));
-                mScreenAnimationStylePreference.setOnPreferenceChangeListener(this);
-                updateScreenAnimationStylePreferenceDescription(currentAnimation);
-            } else {
-                getPreferenceScreen().removePreference(mScreenAnimationStylePreference);
-                mScreenAnimationStylePreference.setValue(String.valueOf(1));
-            }
-        } else {
-            getPreferenceScreen().removePreference(
-                    findPreference(Settings.System.SCREEN_OFF_ANIMATION));
-            getPreferenceScreen().removePreference(mScreenAnimationStylePreference);
-        }
 
         boolean hasNotificationLed = res.getBoolean(
                 com.android.internal.R.bool.config_intrusiveNotificationLed);
@@ -354,24 +327,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         screenTimeoutPreference.setEnabled(revisedEntries.size() > 0);
     }
 
-    private void updateScreenAnimationStylePreferenceDescription(int currentAnimation) {
-        ListPreference preference = mScreenAnimationStylePreference;
-        String summary;
-        if (currentAnimation < 0) {
-            // Unsupported value
-            summary = "";
-        } else {
-            final CharSequence[] entries = preference.getEntries();
-            final CharSequence[] values = preference.getEntryValues();
-            if (entries == null || entries.length == 0) {
-                summary = "";
-            } else {
-                summary = entries[currentAnimation].toString();
-            }
-        }
-        preference.setSummary(summary);
-    }
-
     @Override
     public void onResume() {
         super.onResume();
@@ -515,15 +470,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
         if (KEY_FONT_SIZE.equals(key)) {
             writeFontSizePreference(objValue);
-        }
-        if (KEY_SCREEN_ANIMATION_STYLE.equals(key)) {
-            int value = Integer.parseInt((String) objValue);
-            try {
-                Settings.System.putInt(getContentResolver(), SCREEN_ANIMATION_STYLE, value);
-                updateScreenAnimationStylePreferenceDescription(value);
-            } catch (NumberFormatException e) {
-                Log.e(TAG, "could not persist screen animation style setting", e);
-            }
         }
 
         if (KEY_POWER_CRT_MODE.equals(key)) {
