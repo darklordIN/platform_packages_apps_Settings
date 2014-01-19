@@ -16,6 +16,8 @@ xmlns:rb="http://schemas.android.com/apk/res/com.android.settings">
       android:title="@string/pixel_site_title"
       android:summary="@string/pixel_site_summary" />
 
+</PreferenceCategory>
+
 <PreferenceCategory
             android:key="devs"
             android:title="@string/devs" />
