@@ -55,11 +55,8 @@ public class QuickSettings extends SettingsPreferenceFragment implements
     private static final String GENERAL_SETTINGS = "pref_general_settings";
     private static final String STATIC_TILES = "static_tiles";
     private static final String DYNAMIC_TILES = "pref_dynamic_tiles";
-<<<<<<< HEAD
     private static final String HIDE_LABELS = "qs_hide_text";
-=======
     private static final String PREF_FLIP_QS_TILES = "flip_qs_tiles";
->>>>>>> 0e0bda7... Settings: QS: Allow flip annimation on clicking a tile
 
     private MultiSelectListPreference mRingMode;
     private ListPreference mNetworkMode;
