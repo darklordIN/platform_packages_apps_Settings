@@ -31,8 +31,6 @@
             android:key="notification_style"
             android:title="@string/notification_title"
             android:summary="@string/notification_summary" />
-
-    </PreferenceCategory>
  
     <PreferenceCategory
         android:title="@string/category_quick_access" >
