@@ -18,6 +18,7 @@ package com.android.settings.cyanogenmod;
 
 import android.content.ContentResolver;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -30,6 +31,7 @@ import android.provider.Settings.SettingNotFoundException;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
+import com.android.settings.util.Helpers;
 
 public class StatusBar extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
@@ -151,10 +153,13 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mBatteryBarThickness.setValue((Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, 1)) + "");
         mBatteryBarThickness.setSummary(mBatteryBarThickness.getEntry());
 
+        int barColor;
+        String barHexColor;
+
         PackageManager pm = getPackageManager();
-        Resources systemUiResources;
+        Resources barSystemUiResources;
         try {
-            systemUiResources = pm.getResourcesForApplication("com.android.systemui");
+            barSystemUiResources = pm.getResourcesForApplication("com.android.systemui");
         } catch (Exception e) {
             return;
         }
@@ -165,31 +170,31 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
         mBarOpaqueColor = (ColorPickerPreference) findPreference(PREF_STATUS_BAR_OPAQUE_COLOR);
         mBarOpaqueColor.setOnPreferenceChangeListener(this);
-        intColor = Settings.System.getInt(getContentResolver(),
+        barColor = Settings.System.getInt(getContentResolver(),
                     Settings.System.STATUS_BAR_OPAQUE_COLOR, 0xff000000);
         mBarOpaqueColor.setSummary(getResources().getString(R.string.default_string));
-        if (intColor == 0xff000000) {
-            intColor = systemUiResources.getColor(systemUiResources.getIdentifier(
+        if (barColor == 0xff000000) {
+            barColor = barSystemUiResources.getColor(barSystemUiResources.getIdentifier(
                     "com.android.systemui:color/system_bar_background_opaque", null, null));
         } else {
-            hexColor = String.format("#%08x", (0xffffffff & intColor));
-            mBarOpaqueColor.setSummary(hexColor);
+            barHexColor = String.format("#%08x", (0xffffffff & barColor));
+            mBarOpaqueColor.setSummary(barHexColor);
         }
-        mBarOpaqueColor.setNewPreviewColor(intColor);
+        mBarOpaqueColor.setNewPreviewColor(barColor);
 
 //        mBarTransColor = (ColorPickerPreference) findPreference(PREF_STATUS_BAR_SEMI_TRANS_COLOR);
 //        mBarTransColor.setOnPreferenceChangeListener(this);
-//        intColor = Settings.System.getInt(getActivity().getContentResolver(),
+//        barColor = Settings.System.getInt(getActivity().getContentResolver(),
 //                    Settings.System.STATUS_BAR_SEMI_TRANS_COLOR, 0x66000000);
 //        mBarTransColor.setSummary(getResources().getString(R.string.default_string));
-//        if (intColor == 0xff000000) {
-//            intColor = systemUiResources.getColor(systemUiResources.getIdentifier(
+//        if (barColor == 0xff000000) {
+//            barColor = barSystemUiResources.getColor(barSystemUiResources.getIdentifier(
 //                    "com.android.systemui:color/system_bar_background_semi_transparent", null, null));
 //        } else {
-//            hexColor = String.format("#%08x", (0x66ffffff & intColor));
-//            mBarTransColor.setSummary(hexColor);
+//            barHexColor = String.format("#%08x", (0x66ffffff & barColor));
+//            mBarTransColor.setSummary(barHexColor);
 //        }
-//        mBarTransColor.setNewPreviewColor(intColor);
+//        mBarTransColor.setNewPreviewColor(barColor);
 
         updateBatteryBarOptions();
         enableDependents();
@@ -248,7 +253,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             return true;
         } else if (preference == mBarOpaqueColor) {
             String hex = ColorPickerPreference.convertToARGB(Integer
-                    .valueOf(String.valueOf(objValue)));
+                    .valueOf(String.valueOf(newValue)));
             preference.setSummary(hex);
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getActivity().getContentResolver(),
@@ -257,7 +262,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             return true;
 //      } else if (preference == mBarTransColor) {
 //          String hex = ColorPickerPreference.convertToARGB(Integer
-//                  .valueOf(String.valueOf(objValue)));
+//                  .valueOf(String.valueOf(newValue)));
 //          preference.setSummary(hex);
 //          int intHex = ColorPickerPreference.convertToColorInt(hex);
 //          Settings.System.putInt(getActivity().getContentResolver(),
