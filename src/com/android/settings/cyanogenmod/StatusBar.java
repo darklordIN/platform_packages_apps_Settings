@@ -47,7 +47,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private static final String PREF_STATUS_BAR_OPAQUE_COLOR = "status_bar_opaque_color";
 //  private static final String PREF_STATUS_BAR_SEMI_TRANS_COLOR = "status_bar_trans_color";
 
-    private static final String STATUS_BAR_STYLE_HIDDEN = "5";
     private static final String STATUS_BAR_STYLE_TEXT = "6";
 
     private ListPreference mStatusBarBattery;
@@ -78,8 +77,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         int intColor;
         String hexColor;
 
-        mStatusBarAmPm = (ListPreference) prefSet.findPreference(STATUS_BAR_AM_PM);
-        mStatusBarBattery = (ListPreference) prefSet.findPreference(STATUS_BAR_BATTERY);
         mStatusBarCmSignal = (ListPreference) prefSet.findPreference(STATUS_BAR_SIGNAL);
 
         CheckBoxPreference statusBarBrightnessControl = (CheckBoxPreference)
@@ -127,31 +124,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mStatusBarNetStatsUpdate.setValue(String.valueOf(statsUpdate));
         mStatusBarNetStatsUpdate.setSummary(mStatusBarNetStatsUpdate.getEntry());
         mStatusBarNetStatsUpdate.setOnPreferenceChangeListener(this);
-
-        mBatteryBar = (ListPreference) findPreference(PREF_BATT_BAR);
-        mBatteryBar.setOnPreferenceChangeListener(this);
-        mBatteryBar.setValue((Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR, 0)) + "");
-        mBatteryBar.setSummary(mBatteryBar.getEntry());
-
-        mBatteryBarStyle = (ListPreference) findPreference(PREF_BATT_BAR_STYLE);
-        mBatteryBarStyle.setOnPreferenceChangeListener(this);
-        mBatteryBarStyle.setValue((Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_STYLE, 0)) + "");
-        mBatteryBarStyle.setSummary(mBatteryBarStyle.getEntry());
-
-        mBatteryBarColor = (ColorPickerPreference) findPreference(PREF_BATT_BAR_COLOR);
-        mBatteryBarColor.setOnPreferenceChangeListener(this);
-        int defaultColor = 0xffffffff;
-        int intColor = Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_COLOR, defaultColor);
-        String hexColor = String.format("#%08x", (0xffffffff & intColor));
-        mBatteryBarColor.setSummary(hexColor);
-
-        mBatteryBarChargingAnimation = (CheckBoxPreference) findPreference(PREF_BATT_ANIMATE);
-        mBatteryBarChargingAnimation.setChecked(Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, 0) == 1);
-
-        mBatteryBarThickness = (ListPreference) findPreference(PREF_BATT_BAR_WIDTH);
-        mBatteryBarThickness.setOnPreferenceChangeListener(this);
-        mBatteryBarThickness.setValue((Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, 1)) + "");
-        mBatteryBarThickness.setSummary(mBatteryBarThickness.getEntry());
 
         int barColor;
         String barHexColor;
