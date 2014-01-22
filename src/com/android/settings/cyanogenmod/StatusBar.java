@@ -17,6 +17,7 @@
 package com.android.settings.cyanogenmod;
 
 import android.content.ContentResolver;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -38,7 +39,13 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private static final String STATUS_BAR_NETWORK_STATS_UPDATE = "status_bar_network_status_update";
     private static final String STATUS_BAR_BATTERY_SHOW_PERCENT = "status_bar_battery_show_percent";
 
+
     private static final String STATUS_BAR_STYLE_HIDDEN = "4";
+    private static final String PREF_CUSTOM_STATUS_BAR_COLOR = "custom_status_bar_color";
+    private static final String PREF_STATUS_BAR_OPAQUE_COLOR = "status_bar_opaque_color";
+//  private static final String PREF_STATUS_BAR_SEMI_TRANS_COLOR = "status_bar_trans_color";
+
+    private static final String STATUS_BAR_STYLE_HIDDEN = "5";
     private static final String STATUS_BAR_STYLE_TEXT = "6";
 
     private ListPreference mStatusBarBattery;
@@ -46,6 +53,12 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private ListPreference mStatusBarCmSignal;
     private ListPreference mStatusBarNetStatsUpdate;
     private CheckBoxPreference mStatusBarNetworkStats;
+
+    private CheckBoxPreference mCustomBarColor;
+    private ColorPickerPreference mBarOpaqueColor;
+//  private ColorPickerPreference mBarTransColor;
+    private ColorPickerPreference mBatteryBarColor;
+    private SystemSettingCheckBoxPreference mStatusBarBatteryShowPercent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +72,12 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mStatusBarBattery = (ListPreference) findPreference(STATUS_BAR_BATTERY);
         mStatusBarBatteryShowPercent =
                 (SystemSettingCheckBoxPreference) findPreference(STATUS_BAR_BATTERY_SHOW_PERCENT);
+
+        int intColor;
+        String hexColor;
+
+        mStatusBarAmPm = (ListPreference) prefSet.findPreference(STATUS_BAR_AM_PM);
+        mStatusBarBattery = (ListPreference) prefSet.findPreference(STATUS_BAR_BATTERY);
         mStatusBarCmSignal = (ListPreference) prefSet.findPreference(STATUS_BAR_SIGNAL);
 
         CheckBoxPreference statusBarBrightnessControl = (CheckBoxPreference)
@@ -106,6 +125,74 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mStatusBarNetStatsUpdate.setValue(String.valueOf(statsUpdate));
         mStatusBarNetStatsUpdate.setSummary(mStatusBarNetStatsUpdate.getEntry());
         mStatusBarNetStatsUpdate.setOnPreferenceChangeListener(this);
+
+        mBatteryBar = (ListPreference) findPreference(PREF_BATT_BAR);
+        mBatteryBar.setOnPreferenceChangeListener(this);
+        mBatteryBar.setValue((Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR, 0)) + "");
+        mBatteryBar.setSummary(mBatteryBar.getEntry());
+
+        mBatteryBarStyle = (ListPreference) findPreference(PREF_BATT_BAR_STYLE);
+        mBatteryBarStyle.setOnPreferenceChangeListener(this);
+        mBatteryBarStyle.setValue((Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_STYLE, 0)) + "");
+        mBatteryBarStyle.setSummary(mBatteryBarStyle.getEntry());
+
+        mBatteryBarColor = (ColorPickerPreference) findPreference(PREF_BATT_BAR_COLOR);
+        mBatteryBarColor.setOnPreferenceChangeListener(this);
+        int defaultColor = 0xffffffff;
+        int intColor = Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_COLOR, defaultColor);
+        String hexColor = String.format("#%08x", (0xffffffff & intColor));
+        mBatteryBarColor.setSummary(hexColor);
+
+        mBatteryBarChargingAnimation = (CheckBoxPreference) findPreference(PREF_BATT_ANIMATE);
+        mBatteryBarChargingAnimation.setChecked(Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE, 0) == 1);
+
+        mBatteryBarThickness = (ListPreference) findPreference(PREF_BATT_BAR_WIDTH);
+        mBatteryBarThickness.setOnPreferenceChangeListener(this);
+        mBatteryBarThickness.setValue((Settings.System.getInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, 1)) + "");
+        mBatteryBarThickness.setSummary(mBatteryBarThickness.getEntry());
+
+        PackageManager pm = getPackageManager();
+        Resources systemUiResources;
+        try {
+            systemUiResources = pm.getResourcesForApplication("com.android.systemui");
+        } catch (Exception e) {
+            return;
+        }
+
+        mCustomBarColor = (CheckBoxPreference) findPreference(PREF_CUSTOM_STATUS_BAR_COLOR);
+        mCustomBarColor.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.CUSTOM_STATUS_BAR_COLOR, 0) == 1);
+
+        mBarOpaqueColor = (ColorPickerPreference) findPreference(PREF_STATUS_BAR_OPAQUE_COLOR);
+        mBarOpaqueColor.setOnPreferenceChangeListener(this);
+        intColor = Settings.System.getInt(getContentResolver(),
+                    Settings.System.STATUS_BAR_OPAQUE_COLOR, 0xff000000);
+        mBarOpaqueColor.setSummary(getResources().getString(R.string.default_string));
+        if (intColor == 0xff000000) {
+            intColor = systemUiResources.getColor(systemUiResources.getIdentifier(
+                    "com.android.systemui:color/system_bar_background_opaque", null, null));
+        } else {
+            hexColor = String.format("#%08x", (0xffffffff & intColor));
+            mBarOpaqueColor.setSummary(hexColor);
+        }
+        mBarOpaqueColor.setNewPreviewColor(intColor);
+
+//        mBarTransColor = (ColorPickerPreference) findPreference(PREF_STATUS_BAR_SEMI_TRANS_COLOR);
+//        mBarTransColor.setOnPreferenceChangeListener(this);
+//        intColor = Settings.System.getInt(getActivity().getContentResolver(),
+//                    Settings.System.STATUS_BAR_SEMI_TRANS_COLOR, 0x66000000);
+//        mBarTransColor.setSummary(getResources().getString(R.string.default_string));
+//        if (intColor == 0xff000000) {
+//            intColor = systemUiResources.getColor(systemUiResources.getIdentifier(
+//                    "com.android.systemui:color/system_bar_background_semi_transparent", null, null));
+//        } else {
+//            hexColor = String.format("#%08x", (0x66ffffff & intColor));
+//            mBarTransColor.setSummary(hexColor);
+//        }
+//        mBarTransColor.setNewPreviewColor(intColor);
+
+        updateBatteryBarOptions();
+        enableDependents();
     }
 
     @Override
@@ -131,6 +218,52 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                     Settings.System.STATUS_BAR_NETWORK_STATS_UPDATE_INTERVAL, updateInterval);
             mStatusBarNetStatsUpdate.setSummary(mStatusBarNetStatsUpdate.getEntries()[index]);
             return true;
+        } else if (preference == mBatteryBarColor) {
+            String hex = ColorPickerPreference.convertToARGB(Integer
+                    .valueOf(String.valueOf(newValue)));
+            preference.setSummary(hex);
+
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_BATTERY_BAR_COLOR, intHex);
+            return true;
+        } else if (preference == mBatteryBar) {
+            int val = Integer.valueOf((String) newValue);
+            int index = mBatteryBar.findIndexOfValue((String) newValue);
+            Settings.System.putInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR, val);
+            mBatteryBar.setSummary(mBatteryBar.getEntries()[index]);
+            updateBatteryBarOptions();
+            return true;
+        } else if (preference == mBatteryBarStyle) {
+            int val = Integer.valueOf((String) newValue);
+            int index = mBatteryBarStyle.findIndexOfValue((String) newValue);
+            Settings.System.putInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_STYLE, val);
+            mBatteryBarStyle.setSummary(mBatteryBarStyle.getEntries()[index]);
+            return true;
+        } else if (preference == mBatteryBarThickness) {
+            int val = Integer.valueOf((String) newValue);
+            int index = mBatteryBarThickness.findIndexOfValue((String) newValue);
+            Settings.System.putInt(resolver, Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, val);
+            mBatteryBarThickness.setSummary(mBatteryBarThickness.getEntries()[index]);
+            return true;
+        } else if (preference == mBarOpaqueColor) {
+            String hex = ColorPickerPreference.convertToARGB(Integer
+                    .valueOf(String.valueOf(objValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_BAR_OPAQUE_COLOR, intHex);
+            Helpers.restartSystemUI();
+            return true;
+//      } else if (preference == mBarTransColor) {
+//          String hex = ColorPickerPreference.convertToARGB(Integer
+//                  .valueOf(String.valueOf(objValue)));
+//          preference.setSummary(hex);
+//          int intHex = ColorPickerPreference.convertToColorInt(hex);
+//          Settings.System.putInt(getActivity().getContentResolver(),
+//                  Settings.System.STATUS_BAR_SEMI_TRANS_COLOR, intHex);
+//          Helpers.restartSystemUI();
+//          return true;
         }
         return false;
     }
@@ -141,6 +274,12 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             value = mStatusBarNetworkStats.isChecked();
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.STATUS_BAR_NETWORK_STATS, value ? 1 : 0);
+            return true;
+        } else if (preference == mCustomBarColor) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.CUSTOM_STATUS_BAR_COLOR,
+            mCustomBarColor.isChecked() ? 1 : 0);
+            Helpers.restartSystemUI();
             return true;
         }
 
