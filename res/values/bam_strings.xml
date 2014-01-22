@@ -21,6 +21,7 @@
     <string name="lockscreen_customization_title">Lockscreen</string>
     <string name="ui_additions_title">UI additions</string>
     <string name="advanced_title">Advanced</string>
+    <string name="category_status_bar_style">Status bar style</string>
 
     <!-- Follow BAM on facebook -->
     <string name="follow_us_facebook_title">Facebook</string>
@@ -923,4 +924,5 @@
     <string name="restart_status_bar_menu_title">Restart status bar</string>
     <string name="restart_status_bar_title">Restart?</string>
     <string name="restart_status_bar_message">Restarting the System UI will significally change the values you modify.</string>
+    <string name="custom_color_summary">Override the system color of the systemui</string>
 </resources>
