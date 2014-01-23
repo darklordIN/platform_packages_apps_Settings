@@ -124,7 +124,7 @@
     <string name="appops_sysapp_warning">"Changing permissions of core Android components might lead to undesired behavior. Change settings here at your own risk!</string>
 
     <!-- Themes -->
-    <string name="theme_settings_title">Blackout</string>
+    <string name="theme_settings_title">Dark Pixel</string>
     <string name="theme_auto_mode_title">Switch theme</string>
     <string name="theme_auto_mode_off">Manual</string>
     <string name="theme_auto_mode_lightsensor">On light condition change</string>
@@ -251,17 +251,6 @@
     <string name="status_bar_show_network_stats_title">Show network speeds</string>
     <string name="status_bar_network_stats_update_title">Update frequency</string>
 
-    <!-- Status bar color -->
-    <string name="category_status_bar_style">Status bar style</string>
-    <string name="custom_status_bar_color_title">Custom status bar color</string>
-    <string name="status_bar_opaque_color">Opaque color</string>
-    <string name="status_bar_transparent_color">Dimmed color</string>
-    <string name="status_bar_color_reset">Reset status bar color</string>
-    <string name="restart_status_bar_menu_title">Restart status bar</string>
-    <string name="restart_status_bar_title">Restart?</string>
-    <string name="restart_status_bar_message">Restarting the System UI will significally change the values you modify.</string>
-    <string name="custom_color_summary">Override the system color of the systemui</string>
-    
     <!-- Recents Ram Bar -->
     <string name="ram_bar">Recents RAM bar</string>
     <string name="ram_bar_note_title">Note</string>
