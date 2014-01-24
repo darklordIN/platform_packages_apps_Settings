@@ -97,5 +97,10 @@
         android:title="@string/halo_settings_title" />
         
     </PreferenceCategory>
+    
+    <PreferenceScreen
+        android:id="@+id/system_app_remover"
+        android:fragment="com.android.settings.vanir.SystemappRemover"
+        android:title="@string/system_app_remover" />
 
 </PreferenceScreen>
