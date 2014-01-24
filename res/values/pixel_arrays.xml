@@ -159,7 +159,7 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
-    </string-array>    
+    </string-array>
 
     <!-- Themes -->
     <string-array name="theme_auto_mode_entries">
@@ -280,6 +280,7 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+    </string-array>
 
     <!-- Lockscreen lock icon values -->
     <string-array name="lock_icon_entries">
