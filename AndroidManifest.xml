@@ -208,9 +208,6 @@
         <!-- About PixelROM -->
         <activity android:name=".pixel.About" />
 
-	<!--  Configurable BuildProp  -->
-	<activity android:name=".util.ShowBuildProp" />
-
         <!-- Wireless Controls -->
 
         <activity android:name="Settings$WirelessSettingsActivity"
