@@ -34,7 +34,6 @@ import com.android.settings.SettingsPreferenceFragment;
 public class Halo extends SettingsPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
-    private static final String KEY_HALO_ENABLED = "halo_enabled";
     private static final String KEY_HALO_STATE = "halo_state";
     private static final String KEY_HALO_HIDE = "halo_hide";
     private static final String KEY_HALO_SIZE = "halo_size";
@@ -43,7 +42,6 @@ public class Halo extends SettingsPreferenceFragment
     private static final String KEY_HALO_NOTIFY_COUNT = "halo_notify_count";
     private static final String KEY_HALO_UNLOCK_PING = "halo_unlock_ping";
 
-    private CheckBoxPreference mHaloEnabled;
     private ListPreference mHaloState;
     private ListPreference mHaloSize;
     private CheckBoxPreference mHaloHide;
@@ -65,10 +63,6 @@ public class Halo extends SettingsPreferenceFragment
 
         mNotificationManager = INotificationManager.Stub.asInterface(
                 ServiceManager.getService(Context.NOTIFICATION_SERVICE));
-
-        mHaloEnabled = (CheckBoxPreference) findPreference(KEY_HALO_ENABLED);
-        mHaloEnabled.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.HALO_ENABLED, 0) == 1);
 
         mHaloState = (ListPreference) prefSet.findPreference(KEY_HALO_STATE);
         mHaloState.setValue(String.valueOf((isHaloPolicyBlack() ? "1" : "0")));
@@ -123,11 +117,7 @@ public class Halo extends SettingsPreferenceFragment
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if  (preference == mHaloEnabled) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.HALO_ENABLED, mHaloEnabled.isChecked()
-                    ? 1 : 0);
-        } else if (preference == mHaloHide) {
+        if (preference == mHaloHide) {
             Settings.System.putInt(mContext.getContentResolver(),
                     Settings.System.HALO_HIDE, mHaloHide.isChecked()
                     ? 1 : 0);
