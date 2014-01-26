@@ -573,6 +573,7 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+    </string-array>
 
    <!-- Clock AM/PM -->
    <string-array name="entries_status_bar_am_pm">
