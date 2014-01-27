@@ -26,12 +26,20 @@ xmlns:rb="http://schemas.android.com/apk/res/com.android.settings">
     android:title="@string/devs">
 
         <com.android.settings.widgets.DeveloperPreference
-            android:title="nolinuxnoparty"
+            android:title="name_aniruddh"
             rb:nameDev="@string/name_nolinuxnoparty"
             rb:twitterHandle="@string/twitter_nolinuxnoparty"
             rb:githubLink="@string/github_nolinuxnoparty"
             rb:googleLink="@string/gplus_nolinuxnoparty"
             rb:emailDev="@string/email_nolinuxnoparty" />
+            
+        <com.android.settings.widgets.DeveloperPreference
+            android:title="@string/name_aniruddh"
+            rb:nameDev="@string/name_aniruddh"
+            rb:twitterHandle="@string/twitter_aniruddh"
+            rb:githubLink="@string/github_aniruddh"
+            rb:googleLink="@string/gplus_aniruddh"
+            rb:emailDev="@string/email_aniruddh" />
 
 </PreferenceCategory>
 
