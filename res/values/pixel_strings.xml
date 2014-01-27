@@ -165,6 +165,9 @@
     <string name="notif_alpha_title">Notification transparency</string>
     <string name="shortcut_image_not_valid">The chosen app did not return a valid icon or does not support image cropping. Use another app</string>
 
+    <!-- Ribbon alpha -->
+    <string name="quick_settings_ribbon_alpha">Ribbon background transparency</string>
+
     <!-- Themes -->
     <string name="theme_settings_title">Blackout</string>
     <string name="theme_auto_mode_title">Switch theme</string>

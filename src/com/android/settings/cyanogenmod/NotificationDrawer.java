@@ -24,14 +24,17 @@ import android.provider.Settings;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+import com.android.settings.pixel.SeekBarPreference;
 
 public class NotificationDrawer extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
     private static final String TAG = "NotificationDrawer";
 
     private static final String UI_COLLAPSE_BEHAVIOUR = "notification_drawer_collapse_on_dismiss";
+    private static final String PREF_QUICK_SETTINGS_RIBBON_ALPHA = "quick_settings_ribbon_alpha";
 
     private ListPreference mCollapseOnDismiss;
+    private SeekBarPreference mRibbonAlpha;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,20 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         mCollapseOnDismiss.setValue(String.valueOf(collapseBehaviour));
         mCollapseOnDismiss.setOnPreferenceChangeListener(this);
         updateCollapseBehaviourSummary(collapseBehaviour);
+
+        // Ribbon alpha
+        float transparency;
+        try{
+            transparency = Settings.System.getFloat(getContentResolver(),
+                    Settings.System.QUICK_SETTINGS_RIBBON_ALPHA);
+        } catch (Exception e) {
+            transparency = 0;
+            Settings.System.putFloat(getContentResolver(),
+                    Settings.System.QUICK_SETTINGS_RIBBON_ALPHA, 0.0f);
+        }
+        mRibbonAlpha = (SeekBarPreference) findPreference(PREF_QUICK_SETTINGS_RIBBON_ALPHA);
+        mRibbonAlpha.setInitValue((int) (transparency * 100));
+        mRibbonAlpha.setOnPreferenceChangeListener(this);
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
@@ -56,6 +73,11 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(),
                     Settings.System.STATUS_BAR_COLLAPSE_ON_DISMISS, value);
             updateCollapseBehaviourSummary(value);
+            return true;
+        } else if (preference == mRibbonAlpha) {
+            float valNav = Float.parseFloat((String) objValue);
+            Settings.System.putFloat(getContentResolver(),
+                    Settings.System.QUICK_SETTINGS_RIBBON_ALPHA, valNav / 100);
             return true;
         }
 

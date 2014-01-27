@@ -56,6 +56,11 @@
             android:fragment="com.android.settings.quicksettings.QuickSettingsTiles" >
             <extra android:name="config_ribbon" android:value="true" />
         </PreferenceScreen>
+
+        <com.android.settings.pixel.SeekBarPreference
+             android:key="quick_settings_ribbon_alpha"
+             android:title="@string/quick_settings_ribbon_alpha"
+             android:dependency="qs_quick_access" />
     </PreferenceCategory>
 
 </PreferenceScreen>
