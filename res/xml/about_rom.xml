@@ -26,7 +26,7 @@ xmlns:rb="http://schemas.android.com/apk/res/com.android.settings">
     android:title="@string/devs">
 
         <com.android.settings.widgets.DeveloperPreference
-            android:title="name_aniruddh"
+            android:title="name_nolinuxnoparty"
             rb:nameDev="@string/name_nolinuxnoparty"
             rb:twitterHandle="@string/twitter_nolinuxnoparty"
             rb:githubLink="@string/github_nolinuxnoparty"
