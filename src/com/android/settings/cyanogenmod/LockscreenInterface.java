@@ -105,6 +105,10 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
                     DevicePolicyManager.KEYGUARD_DISABLE_WIDGETS_ALL);
         }
 
+        // Enable or disable lockscreen widgets based on policy
+        checkDisabledByPolicy(mEnableKeyguardWidgets,
+                DevicePolicyManager.KEYGUARD_DISABLE_WIDGETS_ALL);
+
         // Enable or disable camera widget based on device and policy
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA) ||
                 Camera.getNumberOfCameras() == 0) {
