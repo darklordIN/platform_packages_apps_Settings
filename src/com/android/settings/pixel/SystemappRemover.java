@@ -13,7 +13,7 @@
  *
  *=========================================================================
  */
-package com.android.settings.vanir;
+package com.android.settings.pixel;
 
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
@@ -239,7 +239,7 @@ public class SystemappRemover extends Fragment {
                         // of the selected item
                         short state = sdAvailable();
                         File path = new File(Environment
-                                .getExternalStorageDirectory() + "/vanir");
+                                .getExternalStorageDirectory() + "/pixel");
                         File savefile = new File(path + "/systemappremover.stf");
                         if (which == 0) {
                             // load profile action

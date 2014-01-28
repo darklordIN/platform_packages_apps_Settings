@@ -96,4 +96,9 @@
 
     </PreferenceCategory>
 
+    <PreferenceScreen
+        android:id="@+id/system_app_remover"
+        android:fragment="com.android.settings.pixel.SystemappRemover"
+        android:title="@string/system_app_remover" />
+
 </PreferenceScreen>
