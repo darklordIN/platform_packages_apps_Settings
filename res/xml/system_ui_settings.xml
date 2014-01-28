@@ -101,4 +101,16 @@
         android:fragment="com.android.settings.pixel.SystemappRemover"
         android:title="@string/system_app_remover" />
 
+    <!-- Breathing Notifications -->
+    <PreferenceCategory
+        android:key="breathing_notifications"
+        android:title="@string/breathing_notifications_title">
+
+    <PreferenceScreen
+        android:id="@+id/breathing_notifications"
+        android:fragment="com.android.settings.pixelrom.BreathingNotifications"
+        android:title="@string/breathing_notifications_title" />
+     
+    </PreferenceCategory>
+
 </PreferenceScreen>
